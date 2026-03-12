@@ -12,7 +12,7 @@ df = df[df.isna().sum(axis=1) < 2]
 X, y = df.drop('species', axis=1), df['species']
 # Encode the target
 label_enc = LabelEncoder()
-y = label_enc(y)
+y = label_enc.fit_transform(y)
 
 # Create the ColumnTransformer for encoding features
 ct = make_column_transformer(
@@ -20,17 +20,16 @@ ct = make_column_transformer(
     remainder='passthrough'
 )
 
-
-# Make a Pipeline of ct, SimpleImputer, and StandardScaler
+# Build a pipeline
 pipe = make_pipeline(ct, 
                      SimpleImputer(strategy='most_frequent'),
                      StandardScaler(), 
-                     remainder = 'passthrough',
                      KNeighborsClassifier()
                      )
 # Train the model
-X_transformed = pipe.fit_transform(X)
+
 pipe.fit(X,y)
+#pipe.predict(X_new)
 
 # Print predictions
 y_pred = pipe.predict(X) # Get encoded predictions
