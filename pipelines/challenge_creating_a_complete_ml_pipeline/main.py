@@ -29,7 +29,6 @@ pipe = make_pipeline(ct,
 # Train the model
 
 pipe.fit(X,y)
-#pipe.predict(X_new)
 
 # Print predictions
 y_pred = pipe.predict(X) # Get encoded predictions
