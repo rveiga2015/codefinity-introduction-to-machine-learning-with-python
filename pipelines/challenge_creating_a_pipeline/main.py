@@ -21,7 +21,7 @@ pipe = make_pipeline(ct,
                      SimpleImputer(strategy='most_frequent'),
                      StandardScaler()
                     )
-# pipe = ___(___, ___(___=___), ___())
+
 # Transform X using the pipeline and print transformed X
 X_transformed = pipe.fit_transform(X)
 print(X_transformed)
